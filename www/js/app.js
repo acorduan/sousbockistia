@@ -7,7 +7,8 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, $state) {
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -21,11 +22,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       StatusBar.styleDefault();
     }
   });
+
+  $rootScope.goBack = function() {
+        // function to go back
+        window.history.back();
+    }
+
+  $rootScope.$on('$stateChangeSuccess', function () {
+      if ($state.$current == 'cocktail') {
+        $rootScope.showCustomBack = true;
+      } else{
+        $rootScope.showCustomBack = false;
+      }
+  });
+
 })
 
 .config(function($stateProvider, $ionicConfigProvider, $urlRouterProvider) {
-
-  $ionicConfigProvider.views.maxCache(0);
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -47,7 +60,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-home': {
         templateUrl: 'templates/tab-home.html',
-        controller: 'DashCtrl'
+        controller: 'HomeCtrl'
       }
     }
   })
@@ -62,14 +75,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  .state('tab.cocktail', {
+  .state('cocktail', {
     url: '/cocktail/:id',
-    views: {
-      'tab-favourite': {
-        templateUrl: 'templates/cocktail-detail.html',
-        controller: 'CocktailsDetailsCtrl'
-      }
-    }
+    templateUrl: 'templates/cocktail-detail.html',
+    controller: 'CocktailsDetailsCtrl'
   })
 
   .state('tab.profile', {
@@ -77,7 +86,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       views: {
         'tab-profile': {
           templateUrl: 'templates/tab-profile.html',
-          controller: 'ChatsCtrl'
+          controller: 'ProfileCtrl'
         }
       }
     })
@@ -87,7 +96,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-settings': {
         templateUrl: 'templates/tab-settings.html',
-        controller: 'AccountCtrl'
+        controller: 'SettingsCtrl'
       }
     }
   });

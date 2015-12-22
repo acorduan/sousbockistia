@@ -9,6 +9,13 @@
     <a class="button button-full button-positive icon-left ion-wand" href="">
       Créer un cocktail
     </a>
+
+    <ion-list class="card">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="cocktail in cocktails" type="item-text-wrap" href="#/cocktail/{{cocktail.idCocktail}}">
+        <h2>{{cocktail.nom}}</h2>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
     
   </ion-content>
 </ion-view>
