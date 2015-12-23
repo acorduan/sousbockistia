@@ -1,4 +1,4 @@
-<ion-view view-title="Home">
+<ion-view view-title="Accueil">
   <ion-content class="padding">
     <a class="button button-full button-positive icon-left ion-ios-wineglass" href="">
       Choix du verre
@@ -9,6 +9,16 @@
     <a class="button button-full button-positive icon-left ion-wand" href="">
       Créer un cocktail
     </a>
+
+    <ion-list class="card inset">
+      <div class="item item-divider">
+        Dernier cocktails
+      </div>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="cocktail in cocktails" type="item-text-wrap" href="#/cocktail/{{cocktail.idCocktail}}">
+        <h2>{{cocktail.nom}}</h2>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
     
   </ion-content>
 </ion-view>

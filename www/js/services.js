@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 
-.factory('Utilisateurs', function() {
+.factory('Utilisateurs', function($localstorage) {
 
   var utilisateurs = [{
     id: 0,
@@ -30,16 +30,19 @@ angular.module('starter.services', [])
   }];
 
   return {
-    all: function() {
+    allInit: function() {
       return utilisateurs;
     },
+    all: function() {
+      return $localstorage.getObject('utilisateurs');
+    },
     remove: function(utilisateur) {
-      utilisateurs.splice(utilisateurs.indexOf(chat), 1);
+      $localstorage.getObject('utilisateurs').splice($localstorage.getObject('utilisateurs').indexOf(chat), 1);
     },
     get: function(utilisateurId) {
-      for (var i = 0; i < utilisateurs.length; i++) {
-        if (utilisateurs[i].id === parseInt(utilisateurId)) {
-          return utilisateurs[i];
+      for (var i = 0; i < $localstorage.getObject('utilisateurs').length; i++) {
+        if ($localstorage.getObject('utilisateurs')[i].id === parseInt(utilisateurId)) {
+          return $localstorage.getObject('utilisateurs')[i];
         }
       }
       return null;
@@ -47,7 +50,7 @@ angular.module('starter.services', [])
   };
 })
 
-.factory('Cocktails', function() {
+.factory('Cocktails', function($localstorage) {
   var cocktails = [{
     idCocktail: 0,
     favourite: 0,
@@ -81,25 +84,28 @@ angular.module('starter.services', [])
   ];
 
   return {
-    all: function() {
+    allInit: function() {
       return cocktails;
+    },
+    all: function() {
+      return $localstorage.getObject('cocktails');
     },
     allfavourite: function() {
       var cocktailsTemp = new Array();
-      for (var i = 0; i < cocktails.length; i++) {
-        if (cocktails[i].favourite == 1) {
-          cocktailsTemp.push(cocktails[i]);
+      for (var i = 0; i < $localstorage.getObject('cocktails').length; i++) {
+        if ($localstorage.getObject('cocktails')[i].favourite == 1) {
+          cocktailsTemp.push($localstorage.getObject('cocktails')[i]);
         }
       }
       return cocktailsTemp;
     },
     remove: function(cocktail) {
-      cocktails.splice(cocktails.indexOf(cocktail), 1);
+      $localstorage.getObject('cocktails').splice($localstorage.getObject('cocktails').indexOf(cocktail), 1);
     },
     get: function(cocktailId) {
-      for (var i = 0; i < cocktails.length; i++) {
-        if (cocktails[i].idCocktail === parseInt(cocktailId)) {
-          return cocktails[i];
+      for (var i = 0; i < $localstorage.getObject('cocktails').length; i++) {
+        if ($localstorage.getObject('cocktails')[i].idCocktail === parseInt(cocktailId)) {
+          return $localstorage.getObject('cocktails')[i];
         }
       }
       return null;
@@ -107,7 +113,7 @@ angular.module('starter.services', [])
   };
 })
 
-.factory('Ingredients', function() {
+.factory('Ingredients', function($localstorage) {
   var ingredients = [{
     idIngredient: 0,
     nom: "Rhum blanc",
@@ -175,16 +181,19 @@ angular.module('starter.services', [])
   ];
 
   return {
-    all: function() {
+    allInit: function() {
       return ingredients;
     },
+    all: function() {
+      return $localstorage.getObject('ingredients');
+    },
     remove: function(ingredient) {
-      ingredients.splice(ingredients.indexOf(ingredient), 1);
+      $localstorage.getObject('ingredients').splice($localstorage.getObject('ingredients').indexOf(ingredient), 1);
     },
     get: function(ingredientId) {
-      for (var i = 0; i < ingredients.length; i++) {
-        if (ingredients[i].id === parseInt(ingredientId)) {
-          return ingredients[i];
+      for (var i = 0; i < $localstorage.getObject('ingredients').length; i++) {
+        if ($localstorage.getObject('ingredients')[i].id === parseInt(ingredientId)) {
+          return $localstorage.getObject('ingredients')[i];
         }
       }
       return null;
