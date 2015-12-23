@@ -5,9 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ionic.utils'])
 
-.run(function($ionicPlatform, $rootScope, $state) {
+.run(function($ionicPlatform, $rootScope, $state, $localstorage, Utilisateurs, Cocktails, Ingredients) {
 
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -23,11 +23,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   });
 
+  // Display back button
   $rootScope.goBack = function() {
         // function to go back
         window.history.back();
     }
-
   $rootScope.$on('$stateChangeSuccess', function () {
       if ($state.$current == 'cocktail') {
         $rootScope.showCustomBack = true;
@@ -35,6 +35,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         $rootScope.showCustomBack = false;
       }
   });
+
+  // Save in localstorage when it's the first use of the app
+  if(!$localstorage.get('firstUse')) {
+    $localstorage.set('firstUse', 1);
+    $localstorage.setObject('utilisateurs', Utilisateurs.allInit());
+    $localstorage.setObject('cocktails', Cocktails.allInit());
+    $localstorage.setObject('ingredients', Ingredients.allInit());
+  }
+
+
 
 })
 
