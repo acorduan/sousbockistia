@@ -29,20 +29,22 @@ angular.module('starter.services', [])
     face: 'img/mike.png'
   }];
 
+  var localUtilisateurs = $localstorage.getObject('utilisateurs');
+
   return {
     allInit: function() {
       return utilisateurs;
     },
     all: function() {
-      return $localstorage.getObject('utilisateurs');
+      return localUtilisateurs;
     },
     remove: function(utilisateur) {
-      $localstorage.getObject('utilisateurs').splice($localstorage.getObject('utilisateurs').indexOf(chat), 1);
+      localUtilisateurs.splice(localUtilisateurs.indexOf(chat), 1);
     },
     get: function(utilisateurId) {
-      for (var i = 0; i < $localstorage.getObject('utilisateurs').length; i++) {
-        if ($localstorage.getObject('utilisateurs')[i].id === parseInt(utilisateurId)) {
-          return $localstorage.getObject('utilisateurs')[i];
+      for (var i = 0; i < localUtilisateurs.length; i++) {
+        if (localUtilisateurs[i].id === parseInt(utilisateurId)) {
+          return localUtilisateurs[i];
         }
       }
       return null;
@@ -63,8 +65,8 @@ angular.module('starter.services', [])
       {idIngredient: 2},
       {idIngredient: 3}
     ],
-    dateDeCreation: "2015-12-20T18:25:43.511Z",
-    dateDeModification: "2015-12-20T18:25:43.511Z"
+    dateDeCreation: "2013-12-20T18:25:43.511Z",
+    dateDeModification: "2014-12-20T18:25:43.511Z"
   },
   {
     idCocktail: 1,
@@ -83,29 +85,52 @@ angular.module('starter.services', [])
   }
   ];
 
+  var localIngredients = $localstorage.getObject('ingredients');
+  var localCocktails = $localstorage.getObject('cocktails');
+
+  /**
+  * Récupération des ingrédients et inclusion dans l'array des cocktails
+  **/
+  function fillWithIngredients(cocktailsArray){
+    var ingredientsTemp = new Array();
+    for (var i = 0; i < cocktailsArray.length; i++) {
+      for (var ii = 0; ii < localIngredients.length; ii++) {
+        for (var iii = 0; iii < localCocktails[i].ingredients.length; iii++) {
+          if (cocktailsArray[i].ingredients[iii].idIngredient == localIngredients[ii].idIngredient) {
+            ingredientsTemp.push(localIngredients[ii]);
+          }
+        }
+      }
+      cocktailsArray[i].ingredients = ingredientsTemp;
+      ingredientsTemp = [];
+    }
+    return cocktailsArray;
+  }
+
   return {
     allInit: function() {
       return cocktails;
     },
     all: function() {
-      return $localstorage.getObject('cocktails');
+      var cocktailsTemp = localCocktails;
+      return fillWithIngredients(cocktailsTemp);
     },
     allfavourite: function() {
       var cocktailsTemp = new Array();
-      for (var i = 0; i < $localstorage.getObject('cocktails').length; i++) {
-        if ($localstorage.getObject('cocktails')[i].favourite == 1) {
-          cocktailsTemp.push($localstorage.getObject('cocktails')[i]);
+      for (var i = 0; i < localCocktails.length; i++) {
+        if (localCocktails[i].favourite == 1) {
+          cocktailsTemp.push(localCocktails[i]);
         }
       }
-      return cocktailsTemp;
+      return fillWithIngredients(cocktailsTemp);
     },
     remove: function(cocktail) {
-      $localstorage.getObject('cocktails').splice($localstorage.getObject('cocktails').indexOf(cocktail), 1);
+      localCocktails.splice(localCocktails.indexOf(cocktail), 1);
     },
     get: function(cocktailId) {
-      for (var i = 0; i < $localstorage.getObject('cocktails').length; i++) {
-        if ($localstorage.getObject('cocktails')[i].idCocktail === parseInt(cocktailId)) {
-          return $localstorage.getObject('cocktails')[i];
+      for (var i = 0; i < localCocktails.length; i++) {
+        if (localCocktails[i].idCocktail === parseInt(cocktailId)) {
+          return fillWithIngredients(localCocktails[i]);
         }
       }
       return null;
@@ -124,7 +149,7 @@ angular.module('starter.services', [])
   },
   {
     idIngredient: 1,
-    nom: "Rhum blanc",
+    nom: "Rhum brun",
     dosage: 4,
     unite: "cl",
     dateDeCreation: "2015-12-20T18:25:43.511Z",
@@ -132,7 +157,7 @@ angular.module('starter.services', [])
   },
   {
     idIngredient: 2,
-    nom: "Rhum blanc",
+    nom: "Vodka",
     dosage: 4,
     unite: "cl",
     dateDeCreation: "2015-12-20T18:25:43.511Z",
@@ -140,7 +165,7 @@ angular.module('starter.services', [])
   },
   {
     idIngredient: 3,
-    nom: "Rhum blanc",
+    nom: "Tequila",
     dosage: 4,
     unite: "cl",
     dateDeCreation: "2015-12-20T18:25:43.511Z",
@@ -148,7 +173,7 @@ angular.module('starter.services', [])
   },
   {
     idIngredient: 4,
-    nom: "Rhum blanc",
+    nom: "Perrier",
     dosage: 4,
     unite: "cl",
     dateDeCreation: "2015-12-20T18:25:43.511Z",
@@ -156,7 +181,7 @@ angular.module('starter.services', [])
   },
   {
     idIngredient: 5,
-    nom: "Rhum blanc",
+    nom: "Liqueur de caramel",
     dosage: 4,
     unite: "cl",
     dateDeCreation: "2015-12-20T18:25:43.511Z",
@@ -164,7 +189,7 @@ angular.module('starter.services', [])
   },
   {
     idIngredient: 6,
-    nom: "Rhum blanc",
+    nom: "Jus d'orange",
     dosage: 4,
     unite: "cl",
     dateDeCreation: "2015-12-20T18:25:43.511Z",
@@ -172,7 +197,7 @@ angular.module('starter.services', [])
   },
   {
     idIngredient: 7,
-    nom: "Rhum blanc",
+    nom: "CocaCola",
     dosage: 4,
     unite: "cl",
     dateDeCreation: "2015-12-20T18:25:43.511Z",
@@ -180,20 +205,22 @@ angular.module('starter.services', [])
   }
   ];
 
+  var localIngredients = $localstorage.getObject('ingredients');
+
   return {
     allInit: function() {
       return ingredients;
     },
     all: function() {
-      return $localstorage.getObject('ingredients');
+      return localIngredients;
     },
     remove: function(ingredient) {
-      $localstorage.getObject('ingredients').splice($localstorage.getObject('ingredients').indexOf(ingredient), 1);
+      localIngredients.splice(localIngredients.indexOf(ingredient), 1);
     },
     get: function(ingredientId) {
-      for (var i = 0; i < $localstorage.getObject('ingredients').length; i++) {
-        if ($localstorage.getObject('ingredients')[i].id === parseInt(ingredientId)) {
-          return $localstorage.getObject('ingredients')[i];
+      for (var i = 0; i < localIngredients.length; i++) {
+        if (localIngredients[i].id === parseInt(ingredientId)) {
+          return localIngredients[i];
         }
       }
       return null;
