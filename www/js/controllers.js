@@ -19,6 +19,19 @@ angular.module('starter.controllers', [])
   //};
 })
 
+.controller('CocktailsCtrl', function($scope, Cocktails) {
+  $scope.cocktails = Cocktails.all();
+  $scope.numberOfItemsToDisplay = 20;
+
+  // ScrollInfinite : charge 20 cocktails de plus a chaque fois que l'on scroll la page
+  $scope.addMoreItem = function(done) {
+    if ($scope.cocktails.length > $scope.numberOfItemsToDisplay) {
+      $scope.numberOfItemsToDisplay += 20; 
+    }
+    done(); 
+  }
+})
+
 .controller('CocktailsDetailsCtrl', function($scope, $stateParams, Cocktails, $ionicHistory, $state) {
   $scope.cocktail = Cocktails.get($stateParams.id);
 })

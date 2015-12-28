@@ -14,7 +14,7 @@
       <div class="item item-divider">
         Dernier cocktails
       </div>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="cocktail in cocktails | orderBy:'-dateDeModification'" type="item-text-wrap" href="#/cocktail/{{cocktail.idCocktail}}">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="cocktail in cocktails | orderBy:'-dateDeModification' | limitTo:5" type="item-text-wrap" href="#/cocktail/{{cocktail.idCocktail}}">
         <h2>{{cocktail.nom}}</h2>
         <p>{{cocktail.dateDeModification}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
