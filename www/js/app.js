@@ -75,6 +75,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   })
 
+  .state('tab.cocktails', {
+    url: '/cocktails',
+    views: {
+      'tab-cocktails': {
+        templateUrl: 'templates/tab-cocktails.html',
+        controller: 'CocktailsCtrl'
+      }
+    }
+  })
+
   .state('tab.favourite', {
     url: '/favourite',
     views: {
