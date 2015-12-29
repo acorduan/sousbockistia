@@ -1,7 +1,10 @@
 ## Plugins 
  
 Installation du plugin : 
-- Pour le splashscreen : cordova plugin add org.apache.cordova.splashscreen 
+- Pour le splashscreen : 
+```bash
+$ cordova plugin add org.apache.cordova.splashscreen 
+```
 
 ## Installation 
 
