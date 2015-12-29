@@ -1,17 +1,17 @@
 <ion-view view-title="Accueil">
   <ion-content class="padding">
-    <a class="button button-full button-positive icon-left ion-ios-pint" href="">
+    <a class="button button-full button-positive icon-left ion-ios-pint animated bounceInLeft" href="">
       Choix du verre
     </a>
-    <a class="button button-full button-positive icon-left ion-wand" href="">
+    <a class="button button-full button-positive icon-left ion-wand animated bounceInLeft" href="">
       Créer un cocktail
     </a>
 
     <ion-list class="card inset">
-      <div class="item item-divider">
+      <div class="item item-divider animated bounceInLeft">
         Dernier cocktails
       </div>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="cocktail in cocktails | orderBy:'-dateDeModification' | limitTo:5" type="item-text-wrap" href="#/cocktail/{{cocktail.idCocktail}}">
+      <ion-item class="animated bounceInLeft item-remove-animate item-avatar item-icon-right" ng-repeat="cocktail in cocktails | orderBy:'-dateDeModification' | limitTo:5" type="item-text-wrap" href="#/cocktail/{{cocktail.idCocktail}}">
         <h2>{{cocktail.nom}}</h2>
         <p>{{cocktail.dateDeModification}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
