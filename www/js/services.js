@@ -27,29 +27,10 @@ angular.module('starter.services', [])
   var localIngredients = $localstorage.getObject('ingredients');
   var localCocktails = $localstorage.getObject('cocktails');
 
-  /**
-  * Récupération des ingrédients et inclusion dans l'array des cocktails
-  **/
-  function fillWithIngredients(cocktailsArray){
-    var ingredientsTemp = new Array();
-    for (var i = 0; i < cocktailsArray.length; i++) {
-      for (var ii = 0; ii < localIngredients.length; ii++) {
-        for (var iii = 0; iii < localCocktails[i].ingredients.length; iii++) {
-          if (cocktailsArray[i].ingredients[iii].idIngredient == localIngredients[ii].idIngredient) {
-            ingredientsTemp.push(localIngredients[ii]);
-          }
-        }
-      }
-      cocktailsArray[i].ingredients = ingredientsTemp;
-      ingredientsTemp = [];
-    }
-    return cocktailsArray;
-  }
-
   return {
     all: function() {
       var cocktailsTemp = localCocktails;
-      return fillWithIngredients(cocktailsTemp);
+      return cocktailsTemp;
     },
     allfavourite: function() {
       var cocktailsTemp = new Array();
@@ -58,7 +39,7 @@ angular.module('starter.services', [])
           cocktailsTemp.push(localCocktails[i]);
         }
       }
-      return fillWithIngredients(cocktailsTemp);
+      return cocktailsTemp;
     },
     remove: function(cocktail) {
       localCocktails.splice(localCocktails.indexOf(cocktail), 1);
@@ -66,7 +47,7 @@ angular.module('starter.services', [])
     get: function(cocktailId) {
       for (var i = 0; i < localCocktails.length; i++) {
         if (localCocktails[i].idCocktail === parseInt(cocktailId)) {
-          return fillWithIngredients(localCocktails[i]);
+          return localCocktails[i];
         }
       }
       return null;
