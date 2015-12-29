@@ -1,66 +1,34 @@
 [
   {
     "idIngredient": 0,
-    "nom": "Rhum blanc",
-    "dosage": 4,
-    "unite": "cl",
-    "dateDeCreation": "2015-12-20T18:25:43.511Z",
-    "dateDeModification": "2015-12-20T18:25:43.511Z"
+    "nom": "Rhum blanc"
   },
   {
     "idIngredient": 1,
-    "nom": "Rhum brun",
-    "dosage": 4,
-    "unite": "cl",
-    "dateDeCreation": "2015-12-20T18:25:43.511Z",
-    "dateDeModification": "2015-12-20T18:25:43.511Z"
+    "nom": "Rhum brun"
   },
   {
     "idIngredient": 2,
-    "nom": "Vodka",
-    "dosage": 4,
-    "unite": "cl",
-    "dateDeCreation": "2015-12-20T18:25:43.511Z",
-    "dateDeModification": "2015-12-20T18:25:43.511Z"
+    "nom": "Vodka"
   },
   {
     "idIngredient": 3,
-    "nom": "Tequila",
-    "dosage": 4,
-    "unite": "cl",
-    "dateDeCreation": "2015-12-20T18:25:43.511Z",
-    "dateDeModification": "2015-12-20T18:25:43.511Z"
+    "nom": "Tequila"
   },
   {
     "idIngredient": 4,
-    "nom": "Perrier",
-    "dosage": 4,
-    "unite": "cl",
-    "dateDeCreation": "2015-12-20T18:25:43.511Z",
-    "dateDeModification": "2015-12-20T18:25:43.511Z"
+    "nom": "Perrier"
   },
   {
     "idIngredient": 5,
-    "nom": "Liqueur de caramel",
-    "dosage": 4,
-    "unite": "cl",
-    "dateDeCreation": "2015-12-20T18:25:43.511Z",
-    "dateDeModification": "2015-12-20T18:25:43.511Z"
+    "nom": "Liqueur de caramel"
   },
   {
     "idIngredient": 6,
-    "nom": "Jus d'orange",
-    "dosage": 4,
-    "unite": "cl",
-    "dateDeCreation": "2015-12-20T18:25:43.511Z",
-    "dateDeModification": "2015-12-20T18:25:43.511Z"
+    "nom": "Jus d'orange"
   },
   {
     "idIngredient": 7,
-    "nom": "CocaCola",
-    "dosage": 4,
-    "unite": "cl",
-    "dateDeCreation": "2015-12-20T18:25:43.511Z",
-    "dateDeModification": "2015-12-20T18:25:43.511Z"
+    "nom": "CocaCola"
   }
 ]
