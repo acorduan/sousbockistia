@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ionic.utils'])
 
-.run(function($ionicPlatform, $rootScope, $state, $localstorage, Utilisateurs, Cocktails, Ingredients) {
+.run(function($ionicPlatform, $rootScope, $state, $localstorage, $http, $ionicLoading, $window, Utilisateurs, Cocktails, Ingredients) {
 
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -39,16 +39,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   // Save in localstorage when it's the first use of the app
   if(!$localstorage.get('firstUse')) {
     $localstorage.set('firstUse', 1);
-    $localstorage.setObject('utilisateurs', Utilisateurs.allInit());
-    $localstorage.setObject('cocktails', Cocktails.allInit());
-    $localstorage.setObject('ingredients', Ingredients.allInit());
+    var url = "";
+    if(ionic.Platform.isAndroid()){
+      url = "/android_asset/www/";
+    }
+    $http.get(url+'data/cocktails_data.json').success(function(response){ $localstorage.setObject('cocktails', response); $window.location.reload(true);});
+    $http.get(url+'data/ingredients_data.json').success(function(response){ $localstorage.setObject('ingredients', response); });
+    $http.get(url+'data/utilisateurs_data.json').success(function(response){ $localstorage.setObject('utilisateurs', response) });
   }
-
-
 
 })
 
 .config(function($stateProvider, $ionicConfigProvider, $urlRouterProvider) {
+
+  // Tabs en bas pour Android
+  $ionicConfigProvider.tabs.position('bottom');
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
