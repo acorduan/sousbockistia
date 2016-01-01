@@ -2,8 +2,10 @@
 
 import scrapy
 from scrapy.selector import Selector
-from cocktailsScrapy.items import CocktailItem
+from cocktailsScrapy.items import CocktailItem, IngredientItem
 from scrapy.http import Request
+import datetime
+import re
 
 class CocktailSpider(scrapy.Spider):
 	name = '1001cocktails'
@@ -24,9 +26,27 @@ class CocktailSpider(scrapy.Spider):
 
 	# Parse de chaque cocktail
 	def parseCockatil(self, response):
+		datetimenow = datetime.datetime.now().isoformat()
 		cocktailItem = CocktailItem()
-		cocktailItem['ingredients'] = Selector(response).xpath('//*[@id="content"]/div/table/tr/td[2]/table/tr/td[3]/div/table/tr/td/table/tr/td/text()').extract()
-		cocktailItem['nom'] = Selector(response).xpath('//*[@id="content"]/div/table/tr/td[2]/div[1]/h1/text()').extract()[0]
+		ingredientItem = IngredientItem()
+
+		ingredients = Selector(response).xpath('//*[@id="content"]/div/table/tr/td[2]/table/tr/td[3]/div/table/tr/td/table/tr/td/text()').extract()
+		ingredientsTabs = []
+		for ingredient in ingredients:
+			ingredientItem['dosage'] = int(re.findall(r"[-+]?\d*\.\d+|\d+", ingredient)[0])
+			nomS = re.findall(r"[^0-9%]+", ingredient, re.UNICODE)
+			nom = ""
+			for nomTemp in nomS:
+				nom = nom + " " + nomTemp  
+			ingredientItem['nom'] = nom.strip()
+			ingredientsTabs.append(dict(ingredientItem))
+
+		cocktailItem['categorie'] = Selector(response).xpath('//*[@id="content"]/div/span[1]/a[3]/span/text()').extract()[0]
+		cocktailItem['ingredients'] = ingredientsTabs
+		cocktailItem['nom'] = Selector(response).xpath('//*[@id="content"]/div/table/tr/td[2]/div[1]/h1/text()').extract()[0].strip()
 		cocktailItem['preparation'] = Selector(response).xpath('//*[@id="content"]/div/span[2]/text()').extract()
 		cocktailItem['image_urls'] = [ self.root + Selector(response).xpath('//*[@id="content"]/div/table/tr/td[1]/img/@src').extract()[0] ]
+		cocktailItem['dateDeModification'] = datetimenow
+		cocktailItem['dateDeModification'] = datetimenow
+
 		yield cocktailItem
