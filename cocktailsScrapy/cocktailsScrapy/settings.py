@@ -70,7 +70,7 @@ ITEM_PIPELINES = {
 	'cocktailsScrapy.pipelines.BeevaPipeline': 2,
 	'cocktailsScrapy.pipelines.JsonWithEncodingPipeline': 3
 }
-IMAGES_STORE = '/Users/scotscriven/Desktop/cocktailsScrapy/images'
+IMAGES_STORE = '/Users/scotscriven/Documents/Projects/sousbockistia/www/img'
 IMAGES_THUMBS = {
     'small': (50, 50),
     'big': (270, 270),
