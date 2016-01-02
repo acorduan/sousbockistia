@@ -43,9 +43,31 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     if(ionic.Platform.isAndroid()){
       url = "/android_asset/www/";
     }
-    $http.get(url+'data/cocktails_data.json').success(function(response){ $localstorage.setObject('cocktails', response); $window.location.reload(true);});
-    $http.get(url+'data/ingredients_data.json').success(function(response){ $localstorage.setObject('ingredients', response); });
-    $http.get(url+'data/utilisateurs_data.json').success(function(response){ $localstorage.setObject('utilisateurs', response) });
+    $http.get(url+'data/1001cocktails_output.json').success(
+      function(response){ 
+        $localstorage.setObject('cocktails', response); 
+        $window.location.reload(true);
+      }, function(response) {
+        console.error('ERROR localstorage', response);
+        $localstorage.set('firstUse', 0);
+      }
+    );
+    $http.get(url+'data/ingredients_data.json').success(
+      function(response) { 
+        $localstorage.setObject('ingredients', response); 
+      }, function(response) {
+        console.error('ERROR localstorage', response);
+        $localstorage.set('firstUse', 0);
+      }
+    );
+    $http.get(url+'data/utilisateurs_data.json').success(
+      function(response){ 
+        $localstorage.setObject('utilisateurs', response) 
+      }, function(response) {
+        console.error('ERROR localstorage', response);
+        $localstorage.set('firstUse', 0);
+      }
+    );
   }
 
 })

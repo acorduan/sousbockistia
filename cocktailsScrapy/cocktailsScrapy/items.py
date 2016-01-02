@@ -9,9 +9,18 @@ import scrapy
 
 
 class CocktailItem(scrapy.Item):
-    # define the fields for your item here like:
+	idCocktail = scrapy.Field()
+	favoris = scrapy.Field()
 	nom = scrapy.Field()
+	categorie = scrapy.Field()
 	image_urls = scrapy.Field()
 	images = scrapy.Field()
 	preparation = scrapy.Field()
 	ingredients = scrapy.Field()
+	dateDeModification = scrapy.Field()
+	dateDeModification = scrapy.Field()
+
+class IngredientItem(scrapy.Item):
+	nom = scrapy.Field()
+	dosage = scrapy.Field()
+	unite = scrapy.Field()
