@@ -30,11 +30,11 @@ class CocktailSpider(scrapy.Spider):
 		cocktailItem = CocktailItem()
 		ingredientItem = IngredientItem()
 
-		ingredients = Selector(response).xpath('//*[@id="content"]/div/table/tr/td[2]/table/tr/td[3]/div/table/tr/td/table/tr/td/text()').extract()
+		ingredients = Selector(response).xpath('//*[@id="content"]/div/table/tr/td[2]/table/tr/td[1]/table/tr/td')
 		ingredientsTabs = []
 		for ingredient in ingredients:
-			ingredientItem['dosage'] = int(re.findall(r"[-+]?\d*\.\d+|\d+", ingredient)[0])
-			nomS = re.findall(r"[^0-9%]+", ingredient, re.UNICODE)
+			ingredientItem['dosage'] = ingredient.xpath('span/text()').extract()[0]
+			nomS = re.findall(r"[^0-9%]+", ingredient.xpath('span/a[2]/text()').extract()[0], re.UNICODE)
 			nom = ""
 			for nomTemp in nomS:
 				nom = nom + " " + nomTemp  
@@ -44,7 +44,9 @@ class CocktailSpider(scrapy.Spider):
 		cocktailItem['categorie'] = Selector(response).xpath('//*[@id="content"]/div/span[1]/a[3]/span/text()').extract()[0]
 		cocktailItem['ingredients'] = ingredientsTabs
 		cocktailItem['nom'] = Selector(response).xpath('//*[@id="content"]/div/table/tr/td[2]/div[1]/h1/text()').extract()[0].strip()
-		cocktailItem['preparation'] = Selector(response).xpath('//*[@id="content"]/div/span[2]/text()').extract()
+		cocktailItem['preparation'] = Selector(response).xpath('//*[@id="content"]/div/span[2]/text() | //*[@id="content"]/div/span[2]/a//text()').extract()
+		
+		
 		cocktailItem['image_urls'] = [ self.root + Selector(response).xpath('//*[@id="content"]/div/table/tr/td[1]/img/@src').extract()[0] ]
 		cocktailItem['dateDeModification'] = datetimenow
 		cocktailItem['dateDeModification'] = datetimenow
