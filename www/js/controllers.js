@@ -40,25 +40,50 @@ angular.module('starter.controllers', [])
   $scope.cocktails = Cocktails.all();
   $scope.numberOfItemsToDisplay = 20;
 
-  // ScrollInfinite : charge 20 cocktails de plus a chaque fois que l'on scroll la page
-  $scope.addMoreItem = function(done) {
+  // ScrollInfinite : charge 10 cocktails de plus a chaque fois que l'on scroll la page
+  $scope.addMoreItem = function() {
     if ($scope.cocktails.length > $scope.numberOfItemsToDisplay) {
-      $scope.numberOfItemsToDisplay += 20; 
+      $scope.numberOfItemsToDisplay += 10; 
+      $scope.$broadcast('scroll.infiniteScrollComplete');
     }
-    done(); 
+    $scope.$broadcast('scroll.infiniteScrollComplete');
   }
 })
 
-.controller('CocktailsDetailsCtrl', function($scope, $stateParams, Cocktails, $ionicHistory, $state) {
+.controller('CocktailsDetailsCtrl', function($scope, $stateParams, Cocktails) {
   $scope.cocktail = Cocktails.get($stateParams.id);
+  $scope.image = (Cocktails.get($stateParams.id).images[0].path).replace(/full/g, 'img/full');
 })
 
 .controller('FavouriteCtrl', function($scope, Cocktails) {
   $scope.cocktails = Cocktails.allfavourite();
+  $scope.numberOfItemsToDisplay = 20;
+
+  // ScrollInfinite : charge 10 cocktails de plus a chaque fois que l'on scroll la page
+  $scope.addMoreItem = function() {
+    if ($scope.cocktails.length > $scope.numberOfItemsToDisplay) {
+      $scope.numberOfItemsToDisplay += 10; 
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+    }
+    $scope.$broadcast('scroll.infiniteScrollComplete');
+  }
 })
 
 .controller('SettingsCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
   };
+})
+
+// Partie filtre
+.filter('newlines', function () {
+  return function(text) {
+      return text.replace(/•/g, '<br/> •');
+  }
+})
+
+.filter('pathimg', function() {
+  return function(text) {
+      return text.replace(/full/g, 'img/full');
+  }
 });

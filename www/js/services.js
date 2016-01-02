@@ -35,7 +35,7 @@ angular.module('starter.services', [])
     allfavourite: function() {
       var cocktailsTemp = new Array();
       for (var i = 0; i < localCocktails.length; i++) {
-        if (localCocktails[i].favourite == 1) {
+        if (localCocktails[i].favoris == 1) {
           cocktailsTemp.push(localCocktails[i]);
         }
       }

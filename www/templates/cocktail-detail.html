@@ -1,18 +1,18 @@
 <ion-view view-title="{{cocktail.nom}}">
   <ion-content class="padding">
-    <!-- <img ng-src="{{cocktail.face}}" style="width: 64px; height: 64px"> -->
+    <img ng-src="{{image}}">
     <div class="list">
 		<div class="item item-divider">
 			Présentation
 		</div>
-		<p>
-			{{cocktail.presentation}}
+		<p ng-bind-html="cocktail.preparation | newlines">
+			
 		</p>
 		<div class="item item-divider">
 			Ingrédients
 		</div>
 		<p ng-repeat="ingredient in cocktail.ingredients">
-			{{ingredient.nom}}, dosage : {{ingredient.dosage}}{{ingredient.unite}}
+			{{ingredient.nom}}, dosage : {{ingredient.dosage}}
 		</p>
 	</div>
   </ion-content>

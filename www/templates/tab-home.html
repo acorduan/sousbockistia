@@ -12,8 +12,9 @@
         Dernier cocktails
       </div>
       <ion-item class="animated bounceInLeft item-remove-animate item-avatar item-icon-right" ng-repeat="cocktail in cocktails | orderBy:'-dateDeModification' | limitTo:5" type="item-text-wrap" href="#/cocktail/{{cocktail.idCocktail}}">
+        <img ng-src="{{cocktail.images[0].path | pathimg}}">
         <h2>{{cocktail.nom}}</h2>
-        <p>{{cocktail.dateDeModification}}</p>
+        <p>{{cocktail.dateDeModification | date:mediumDate}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
     </ion-list>
