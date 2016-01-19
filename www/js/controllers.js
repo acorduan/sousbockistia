@@ -71,6 +71,8 @@ angular.module('starter.controllers', [])
 
 .controller('CategorieCtrl', function($scope, Cocktails) {
   $scope.categories = Cocktails.categorie();
+
+  
   $scope.numberOfItemsToDisplay = 20;
 
   // ScrollInfinite : charge 10 cocktails de plus a chaque fois que l'on scroll la page
