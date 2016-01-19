@@ -7,7 +7,7 @@
 	</ion-header-bar>
   	<ion-content class="padding">
 	    <ion-list>
-	      	<ion-item class="animated bounceInLeft item-remove-animate item-avatar item-icon-right card" ng-repeat="cocktail in cocktails | filter:searchFilter | limitTo:numberOfItemsToDisplay" type="item-text-wrap" href="#/cocktail/{{cocktail.idCocktail}}">
+	      	<ion-item class="animated bounceInLeft item-remove-animate item-avatar item-icon-right card" ng-repeat="cocktail in cocktails | orderBy:'nom' |filter:searchFilter | limitTo:numberOfItemsToDisplay" type="item-text-wrap" href="#/cocktail/{{cocktail.idCocktail}}">
 	      		<img ng-src="{{cocktail.images[0].path | pathimg}}">
 	        	<h2>{{cocktail.nom}}</h2>
 	        	<i class="icon ion-chevron-right icon-accessory"></i>
