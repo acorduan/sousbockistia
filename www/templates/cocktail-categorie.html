@@ -1,0 +1,18 @@
+<ion-view view-title="{{categorie}}">
+<ion-header-bar class="bar-light bar-subheader">
+	    <label class="item item-input animated bounceInLeft">
+		  	<i class="icon ion-search placeholder-icon"></i>
+		  	<input type="search" placeholder="Rechercher" ng-model="searchFilter.nom" ng-change="scrollTop()">
+		</label>
+	</ion-header-bar>
+ 	<ion-content class="padding">
+	    <ion-list>
+	      	<ion-item class="animated bounceInLeft item-remove-animate item-avatar item-icon-right card" ng-repeat="cocktail in cocktails | orderBy:'nom' |filter:searchFilter | limitTo:numberOfItemsToDisplay" type="item-text-wrap" href="#/cocktail/{{cocktail.idCocktail}}">
+	      		<img ng-src="{{cocktail.images[0].path | pathimg}}">
+	        	<h2>{{cocktail.nom}}</h2>
+	        	<i class="icon ion-chevron-right icon-accessory"></i>
+	      </ion-item>
+	    </ion-list>
+	    <ion-infinite-scroll on-infinite="addMoreItem()" distance="1%"></ion-infinite-scroll>
+	</ion-content>
+</ion-view>

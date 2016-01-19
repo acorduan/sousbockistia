@@ -69,6 +69,35 @@ angular.module('starter.controllers', [])
   }
 })
 
+.controller('CategorieCtrl', function($scope, Cocktails) {
+  $scope.categories = Cocktails.categorie();
+  $scope.numberOfItemsToDisplay = 20;
+
+  // ScrollInfinite : charge 10 cocktails de plus a chaque fois que l'on scroll la page
+  $scope.addMoreItem = function() {
+    if ($scope.categories.length > $scope.numberOfItemsToDisplay) {
+      $scope.numberOfItemsToDisplay += 10; 
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+    }
+    $scope.$broadcast('scroll.infiniteScrollComplete');
+  }
+})
+
+.controller('CocktailsCategorieCtrl', function($scope, $stateParams,Cocktails) {
+  $scope.cocktails = Cocktails.getFromCategorie($stateParams.categorie);
+  $scope.numberOfItemsToDisplay = 20;
+  $scope.categorie = $stateParams.categorie;
+
+  // ScrollInfinite : charge 10 cocktails de plus a chaque fois que l'on scroll la page
+  $scope.addMoreItem = function() {
+    if ($scope.cocktails.length > $scope.numberOfItemsToDisplay) {
+      $scope.numberOfItemsToDisplay += 10; 
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+    }
+    $scope.$broadcast('scroll.infiniteScrollComplete');
+  }
+})
+
 .controller('SettingsCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true

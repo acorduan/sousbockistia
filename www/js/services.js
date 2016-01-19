@@ -41,9 +41,46 @@ angular.module('starter.services', [])
       }
       return cocktailsTemp;
     },
+    categorie: function() {
+      var categoriesTemp = new Array();
+      var add;
+
+      categoriesTemp.push(localCocktails[0].categorie);
+      
+      for(var i=0;i< localCocktails.length;i++)
+      {
+        add = 1;
+        for(var j=0;j< categoriesTemp.length;j++)
+        {
+          if(categoriesTemp[j] == localCocktails[i].categorie)
+          {
+           add = 0;
+          } 
+        }
+        if(add == 1)
+        {
+          categoriesTemp.push(localCocktails[i].categorie);
+        }     
+     }
+     return  categoriesTemp;
+  },
+
     remove: function(cocktail) {
       localCocktails.splice(localCocktails.indexOf(cocktail), 1);
     },
+    getFromCategorie: function(categorie)
+    {
+      var cocktailsTemp = new Array();
+      for(var i=0;i<localCocktails.length;i++)
+      {
+          if(localCocktails[i].categorie == categorie)
+          {
+            cocktailsTemp.push(localCocktails[i]);
+          }
+      }
+      return cocktailsTemp;
+    },
+
     get: function(cocktailId) {
       for (var i = 0; i < localCocktails.length; i++) {
         if (localCocktails[i].idCocktail === parseInt(cocktailId)) {

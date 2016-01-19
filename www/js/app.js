@@ -29,7 +29,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         window.history.back();
     }
   $rootScope.$on('$stateChangeSuccess', function () {
-      if ($state.$current == 'cocktail') {
+      if ($state.$current == 'cocktail' || $state.$current == 'cocktailCategorie') {
         $rootScope.showCustomBack = true;
       } else{
         $rootScope.showCustomBack = false;
@@ -100,6 +100,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         controller: 'HomeCtrl'
       }
     }
+  })
+
+  .state('tab.categories', {
+    url: '/categories',
+    views: {
+      'tab-categories': {
+        templateUrl: 'templates/tab-categories.html',
+        controller: 'CategorieCtrl'
+      }
+    }
+  })  
+
+    .state('cocktailCategorie', {
+    url: '/cocktailCategorie/:categorie',
+    templateUrl: 'templates/cocktail-categorie.html',
+    controller: 'CocktailsCategorieCtrl'
   })
 
   .state('tab.cocktails', {
