@@ -241,7 +241,7 @@
     },
     {
         "nom": "Kir sur lit de rose",
-        "categorie": "Mixologie Moléculaire",
+        "categorie": "Vin & Champagne",
         "ingredients": [
             {
                 "nom": "vin blanc",
@@ -601,7 +601,7 @@
     },
     {
         "nom": "Vin chaud à l'orange",
-        "categorie": "Grogs et Boissons Chaudes",
+        "categorie": "Vin & Champagne",
         "ingredients": [
             {
                 "nom": "oranges",
@@ -677,7 +677,7 @@
     },
     {
         "nom": "Reporter",
-        "categorie": "Cocktails au Champagne",
+        "categorie": "Vin & Champagne",
         "ingredients": [
             {
                 "nom": "spiritueux anisé (pastis, ricard, pernod)",
@@ -713,7 +713,7 @@
     },
     {
         "nom": "Pêche attitude",
-        "categorie": "Cocktails Champions",
+        "categorie": "Cocktails au Rhum",
         "ingredients": [
             {
                 "nom": "rhum blanc",
@@ -825,7 +825,7 @@
     },
     {
         "nom": "Vino Tea pot",
-        "categorie": "Cocktails Eau de Vie de Fruits",
+        "categorie": "Vin & Champagne",
         "ingredients": [
             {
                 "nom": "infusion de thé",
@@ -1443,7 +1443,7 @@
     },
     {
         "nom": "Vodka-piment",
-        "categorie": "Vodkas arrangées",
+        "categorie": "Cocktails à la Vodka",
         "ingredients": [
             {
                 "nom": "vodka",
@@ -2031,7 +2031,7 @@
     },
     {
         "nom": "Cognac Sour",
-        "categorie": "Cocktails Eau de Vie de Fruits",
+        "categorie": "Cocktails au Cognac",
         "ingredients": [
             {
                 "nom": "cognac",
@@ -2379,7 +2379,7 @@
     },
     {
         "nom": "Vodka red bull",
-        "categorie": "Cocktails Energétiques",
+        "categorie": "Cocktails à la Vodka",
         "ingredients": [
             {
                 "nom": "energy drink (red bull, pitbull, duff)",
@@ -3275,7 +3275,7 @@
     },
     {
         "nom": "Nikolaschka",
-        "categorie": "Cocktails Eau de Vie de Fruits",
+        "categorie": "Cocktails au Cognac",
         "ingredients": [
             {
                 "nom": "cognac",

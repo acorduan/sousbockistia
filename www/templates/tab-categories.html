@@ -2,7 +2,7 @@
 	
   	<ion-content class="padding">
 	    <ion-list>
-	      <ion-item class="animated bounceInLeft item-remove-animate item-avatar item-icon-right card" ng-repeat="categorie in categories |filter:searchFilter | limitTo:numberOfItemsToDisplay" type="item-text-wrap" href="#/cocktailCategorie/{{categorie}}">   		
+	      <ion-item class="animated bounceInLeft item-remove-animate item-avatar item-icon-right card" ng-repeat="categorie in categories | orderBy:'categorie' |filter:searchFilter | limitTo:numberOfItemsToDisplay" type="item-text-wrap" href="#/cocktailCategorie/{{categorie}}">   		
 	        	<img ng-src="img/categorie/{{categorie}}.png">
 	        	{{categorie}}
 	        	<i class="icon ion-chevron-right icon-accessory"></i>       	
